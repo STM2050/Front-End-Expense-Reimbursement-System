@@ -17,14 +17,19 @@ async function login() {
       }),
     });
     if (res.status == 200) {
-      data = await res.json();
+      let data = await res.json();
+      let first_name = data.first_name;
+      let last_name = data.last_name;
+      let fullName = first_name + " " + last_name;
+      let role = data.role;
+      let username = data.username;
+      sessionStorage.setItem("FULLNAME", fullName);
+      sessionStorage.setItem("ROLE", role);
+      sessionStorage.setItem("USERNAME", username);
+      console.log(fullName, role, username);
       window.location.href = "/loggedin.html";
-      console.log("loggedin");
     }
 
-    if (res.status == 200) {
-      console.log("Kappu");
-    }
     if (res.status == 401) {
       data = await res.json();
       console.log("401 status gopu");

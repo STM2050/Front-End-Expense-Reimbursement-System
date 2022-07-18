@@ -7,3 +7,13 @@ async function logout() {
     window.location.href = "index.html";
   }
 }
+
+window.addEventListener("load", () => {
+  // const params = new URL(document.location).searchParams;
+  const fullName = sessionStorage.getItem("FULLNAME");
+  const role = sessionStorage.getItem("ROLE");
+  const username = sessionStorage.getItem("USERNAME");
+
+  let name = document.querySelector("#name");
+  name.innerHTML = fullName;
+});
