@@ -1,12 +1,29 @@
 let logoutButton = document.querySelector("#logout");
 logoutButton.addEventListener("click", logout);
 
+var username = sessionStorage.getItem("USERNAME");
+
+let allReimbursementsButton = document.querySelector("#finance_manager button");
+allReimbursementsButton.addEventListener(
+  "click",
+  finance_manager_get_all_reimbursement
+);
+
 async function logout() {
   let res = await fetch(`http://127.0.0.1:8080/logout`, { method: "POST" });
   if (res.status == 200) {
     sessionStorage.clear();
     window.location.href = "index.html";
   }
+}
+
+async function finance_manager_get_all_reimbursement() {
+  let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
+    credentials: "include",
+    method: "GET",
+  });
+  let data = res.json();
+  console.log(data);
 }
 
 window.addEventListener("load", () => {
