@@ -24,10 +24,15 @@ async function finance_manager_get_all_reimbursement() {
   });
   let data = await res.json();
   let data_array = data[`Reimbursement details of ${username}`];
-  console.log(data_array);
+  let tableBody = document.querySelector("#t-body");
+  // check if the tbody already has any child elements. If any child elements found, remove all child elements
+  if (tableBody.hasChildNodes()) {
+    tableBody.removeChild(tableRow);
+  }
   for (let user of data_array) {
-    let tableBody = document.querySelector("#t-body");
+    // let tableBody = document.querySelector("#t-body");
     let tableRow = document.createElement("tr");
+
     tableBody.appendChild(tableRow);
 
     let description = document.createElement("td");
