@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ERS-Logged-In</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <script defer src="loggedin.js"></script>
   </head>
   <body>
@@ -15,7 +19,9 @@
             <a href="index.html">Home</a>
           </span>
           <span id="finance_manager">
-            <button type="button">Check Reimbursement Details</button>
+            <button type="button" class="button is-success is-outlined">
+              Check Reimbursement Details
+            </button>
           </span>
           <span id="employee_all_reimbursement">
             <a></a>
@@ -27,29 +33,40 @@
           <span id="role"></span>
           <span id="username"></span>
           <span>
-            <button type="button" id="logout">logout</button>
+            <button
+              type="button"
+              id="logout"
+              class="button is-warning is-focused"
+            >
+              logout
+            </button>
           </span>
         </div>
       </nav>
     </header>
     <main>
-      <table id="table_reimbursement">
-        <thead>
-          <tr>
-            <th>description</th>
-            <th>receipt_img</th>
-            <th>reimb_author</th>
-            <th>reimb_id</th>
-            <th>reimb_resolver</th>
-            <th>reimbursement_amount</th>
-            <th>resolved_at</th>
-            <th>status</th>
-            <th>submitted_at</th>
-            <th>type_of_expense</th>
-          </tr>
-        </thead>
-        <tbody id="t-body"></tbody>
-      </table>
+      <div class="table-container">
+        <table
+          id="table_reimbursement"
+          class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+        >
+          <thead>
+            <tr>
+              <th>description</th>
+              <th>receipt_img</th>
+              <th>reimb_author</th>
+              <th>reimb_id</th>
+              <th>reimb_resolver</th>
+              <th>reimbursement_amount</th>
+              <th>resolved_at</th>
+              <th>status</th>
+              <th>submitted_at</th>
+              <th>type_of_expense</th>
+            </tr>
+          </thead>
+          <tbody id="t-body"></tbody>
+        </table>
+      </div>
     </main>
   </body>
 </html>

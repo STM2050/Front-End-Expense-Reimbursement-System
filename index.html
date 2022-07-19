@@ -5,20 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ERS</title>
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
   </head>
   <body>
     <form>
       <div>
         <label for="username">User name:</label>
-        <input type="text" id="username" />
+        <input type="text" id="username" class="input is-rounded" />
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" id="password" />
+        <input type="password" id="password" class="input is-rounded" />
       </div>
       <div>
-        <button type="button" id="login">Login</button>
+        <button type="button" id="login" class="button is-success is-rounded">
+          Login
+        </button>
       </div>
     </form>
     <div id="error-message"><p></p></div>
