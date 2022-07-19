@@ -16,7 +16,7 @@
       <nav>
         <div>
           <span>
-            <a href="loggedin.html">Home</a>
+            <a href="loggedin.html" class="button is-link is-outlined">Home</a>
           </span>
           <span id="finance_manager">
             <button type="button" class="button is-success is-outlined">
@@ -29,14 +29,14 @@
           <span id="employee_create_reimbursement">
             <a></a>
           </span>
-          <span id="name"></span>
-          <span id="role"></span>
-          <span id="username"></span>
+          <span id="name" class="button is-info is-outlined"></span>
+          <span id="role" class="button is-success is-outlined"></span>
+          <span id="username" class="button is-primary is-outlined"></span>
           <span>
             <button
               type="button"
               id="logout"
-              class="button is-warning is-focused"
+              class="button is-danger is-rounded"
             >
               logout
             </button>
@@ -62,10 +62,10 @@
               <th>
                 status
                 <select>
-                  <option></option>
-                  <option>pending</option>
-                  <option>approved</option>
-                  <option>denied</option>
+                  <option value=""></option>
+                  <option value="1">pending</option>
+                  <option value="2">approved</option>
+                  <option value="3">denied</option>
                 </select>
               </th>
               <th>submitted_at</th>
