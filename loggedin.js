@@ -1,7 +1,7 @@
 let logoutButton = document.querySelector("#logout");
 logoutButton.addEventListener("click", logout);
 
-var username = sessionStorage.getItem("USERNAME");
+var username = sessionStorage.getItem("USERNAME"); //in order to pass it as a parameter in function get_all_reimbursement
 
 let allReimbursementsButton = document.querySelector("#finance_manager button");
 allReimbursementsButton.addEventListener("click", get_all_reimbursement);
@@ -162,11 +162,33 @@ function create_table(data_array) {
   }
 }
 
-let filter_status_of_reimbursement = document.getElementById("status-filter");
-filter_status_of_reimbursement.addEventListener("click", filter_status);
-
-function filter_status() {
+let select_status_of_reimbursement = document.getElementById("status-select");
+select_status_of_reimbursement.addEventListener("click", select_status);
+var text = ""; // declared globally in order to use it in the function filter_reimbursement_status
+function select_status() {
   let select = document.getElementById("status");
-  let text = select.options[select.selectedIndex].text;
+  text = select.options[select.selectedIndex].text;
   console.log(text);
+  //return text;
+}
+
+let filter_status_of_reimbursement = document.getElementById("status-filter");
+filter_status_of_reimbursement.addEventListener(
+  "click",
+  filter_reimbursement_status
+);
+
+async function filter_reimbursement_status() {
+  let res = await fetch(
+    `http://127.0.0.1:8080/users/${username}?status=${text}`,
+    {
+      credentials: "include",
+      method: "GET",
+    }
+  );
+  let data = await res.json();
+  let data_array = data[`Reimbursement details of ${username}`];
+  console.log("success at query selector");
+
+  create_table(data_array);
 }
