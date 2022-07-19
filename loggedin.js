@@ -100,7 +100,11 @@ window.addEventListener("load", () => {
     let employee_create_reimbursement = document.querySelector(
       "#employee_create_reimbursement a"
     );
-    employee_create_reimbursement.setAttribute("href", "/index.html");
+    employee_create_reimbursement.setAttribute("href", "");
+    employee_create_reimbursement.setAttribute(
+      "class",
+      "button is-danger is-outlined"
+    );
     employee_create_reimbursement.innerHTML = "Create Reimbursement";
   }
 });
