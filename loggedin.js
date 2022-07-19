@@ -109,3 +109,12 @@ function create_table(data_array) {
     }
   }
 }
+
+let filter_status_of_reimbursement = document.getElementById("status-filter");
+filter_status_of_reimbursement.addEventListener("click", filter_status);
+
+function filter_status() {
+  let select = document.getElementById("status");
+  let text = select.options[select.selectedIndex].text;
+  console.log(text);
+}
