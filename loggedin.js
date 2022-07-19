@@ -27,7 +27,7 @@ async function finance_manager_get_all_reimbursement() {
 
   let tableBody = document.querySelector("#t-body");
 
-  // check if the tbody already has any child elements. If any child elements found, remove all child elements
+  // check if the tbody already has any child elements. If any child elements found, don't create a new table
   if (!tableBody.hasChildNodes()) {
     for (let user of data_array) {
       let tableRow = document.createElement("tr");
