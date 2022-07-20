@@ -187,16 +187,23 @@ function create_table(data_array) {
     }
   }
 }
+let selectElement = document.querySelector("#status");
 
-let select_status_of_reimbursement = document.getElementById("status-select");
-select_status_of_reimbursement.addEventListener("click", select_status);
 var text = ""; // declared globally in order to use it in the function filter_reimbursement_status
-function select_status() {
-  let select = document.getElementById("status");
-  text = select.options[select.selectedIndex].text;
+selectElement.addEventListener("change", (e) => {
+  text = e.target.value;
   console.log(text);
-  //return text;
-}
+});
+
+// let select_status_of_reimbursement = document.getElementById("status-select");
+// select_status_of_reimbursement.addEventListener("click", select_status);
+// var text = ""; // declared globally in order to use it in the function filter_reimbursement_status
+// function select_status() {
+//   let select = document.getElementById("status");
+//   text = select.options[select.selectedIndex].text;
+//   console.log(text);
+//   //return text;
+// }
 
 let filter_status_of_reimbursement = document.getElementById("status-filter");
 filter_status_of_reimbursement.addEventListener(
