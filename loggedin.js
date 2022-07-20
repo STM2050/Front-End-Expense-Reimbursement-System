@@ -97,6 +97,19 @@ function create_table(data_array) {
 
       let status = document.createElement("td");
       status.innerHTML = user["status"];
+      if (status.innerHTML == "pending") {
+        let status_selection = document.createElement("select");
+        status_selection.setAttribute("id", "status_selection");
+        let option1 = document.createElement("option");
+        option1.setAttribute("value", "4");
+        option1.innerHTML = "approve";
+        let option2 = document.createElement("option");
+        option2.setAttribute("value", "5");
+        option2.innerHTML = "deny";
+        status_selection.appendChild(option1);
+        status_selection.appendChild(option2);
+        status.appendChild(status_selection);
+      }
       tableRow.appendChild(status);
 
       let submitted_at = document.createElement("td");
@@ -148,6 +161,19 @@ function create_table(data_array) {
 
         let status = document.createElement("td");
         status.innerHTML = user["status"];
+        if (status.innerHTML == "pending") {
+          let status_selection = document.createElement("select");
+          status_selection.setAttribute("id", "status_selection");
+          let option1 = document.createElement("option");
+          option1.setAttribute("value", "4");
+          option1.innerHTML = "approve";
+          let option2 = document.createElement("option");
+          option2.setAttribute("value", "5");
+          option2.innerHTML = "deny";
+          status_selection.appendChild(option1);
+          status_selection.appendChild(option2);
+          status.appendChild(status_selection);
+        }
         tableRow.appendChild(status);
 
         let submitted_at = document.createElement("td");
