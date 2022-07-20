@@ -51,7 +51,7 @@
           class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
         >
           <thead>
-            <tr>
+            <tr id="table-head-row">
               <th>description</th>
               <th>receipt_img</th>
               <th>reimb_author</th>
@@ -59,16 +59,14 @@
               <th>reimb_resolver</th>
               <th>reimbursement_amount</th>
               <th>resolved_at</th>
-              <th>
+              <th id="action_status">
                 status
                 <select id="status">
                   <option value="" selected></option>
-                  <option value="1">pending</option>
-                  <option value="2">approved</option>
-                  <option value="3">denied</option>
+                  <option value="pending">pending</option>
+                  <option value="approved">approved</option>
+                  <option value="denied">denied</option>
                 </select>
-                <button type="button" id="status-select">select</button>
-                <button type="button" id="status-filter">filter</button>
               </th>
               <th>submitted_at</th>
               <th>type_of_expense</th>
