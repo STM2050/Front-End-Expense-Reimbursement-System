@@ -162,24 +162,37 @@ function create_table(data_array) {
         let status = document.createElement("td");
         status.innerHTML = user["status"];
         if (status.innerHTML == "pending") {
-          let status_selection = document.createElement("select");
-          status_selection.setAttribute("id", "status_selection");
-          let option1 = document.createElement("option");
-          option1.setAttribute("value", "4");
-          option1.innerHTML = "approve";
-          let option2 = document.createElement("option");
-          option2.setAttribute("value", "5");
-          option2.innerHTML = "deny";
-          status_selection.appendChild(option1);
-          status_selection.appendChild(option2);
-          status.appendChild(status_selection);
-          // let form_element = document.createElement("form")
-          // let label_approve = document.createElement("label")
-          // label_approve.setAttribute("for", "approve")
-          // let input_approve = document.createElement("input")
-          // let input_approve_attributes={}
+          // let status_selection = document.createElement("select");
+          // status_selection.setAttribute("id", "status_selection");
+          // let option1 = document.createElement("option");
+          // option1.setAttribute("value", "4");
+          // option1.innerHTML = "approve";
+          // let option2 = document.createElement("option");
+          // option2.setAttribute("value", "5");
+          // option2.innerHTML = "deny";
+          // status_selection.appendChild(option1);
+          // status_selection.appendChild(option2);
+          // status.appendChild(status_selection);
+          let form_element = document.createElement("form");
+          // form_element.setAttribute("class", "box");
+          let label_approve = document.createElement("label");
+          label_approve.setAttribute("for", user["reimb_id"]);
+          label_approve.setAttribute("class", "control");
+          label_approve.innerHTML = "approve";
+          let input_approve = document.createElement("input");
+          let input_approve_attributes = {
+            type: "radio",
+            id: user["reimb_id"],
+            name: user["reimb_id"],
+            value: "approve",
+          };
+          setAttributes(input_approve, input_approve_attributes);
+          form_element.appendChild(label_approve);
+          form_element.appendChild(input_approve);
+          status.appendChild(form_element);
         }
         tableRow.appendChild(status);
+        // tableRow.appendChild(status);
 
         let submitted_at = document.createElement("td");
         submitted_at.innerHTML = user["submitted_at"];
@@ -215,4 +228,11 @@ async function filter_reimbursement_status() {
   console.log("success at query selector");
 
   create_table(data_array);
+}
+
+// Helper function to set multiple attributes of an element
+function setAttributes(element, attributes) {
+  Object.keys(attributes).forEach((attr) => {
+    element.setAttribute(attr, attributes[attr]);
+  });
 }
