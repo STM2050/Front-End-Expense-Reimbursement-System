@@ -173,12 +173,17 @@ function create_table(data_array) {
           status_selection.appendChild(option1);
           status_selection.appendChild(option2);
           status.appendChild(status_selection);
+          // let form_element = document.createElement("form")
+          // let label_approve = document.createElement("label")
+          // label_approve.setAttribute("for", "approve")
+          // let input_approve = document.createElement("input")
+          // let input_approve_attributes={}
         }
         tableRow.appendChild(status);
 
         let submitted_at = document.createElement("td");
         submitted_at.innerHTML = user["submitted_at"];
-        tableRow.appendChild(submitted_at);
+        // tableRow.appendChild(submitted_at);
 
         let type_of_expense = document.createElement("td");
         type_of_expense.innerHTML = user["type_of_expense"];
@@ -195,21 +200,7 @@ selectElement.addEventListener("change", (e) => {
   console.log(text);
 });
 
-// let select_status_of_reimbursement = document.getElementById("status-select");
-// select_status_of_reimbursement.addEventListener("click", select_status);
-// var text = ""; // declared globally in order to use it in the function filter_reimbursement_status
-// function select_status() {
-//   let select = document.getElementById("status");
-//   text = select.options[select.selectedIndex].text;
-//   console.log(text);
-//   //return text;
-// }
-
-let filter_status_of_reimbursement = document.getElementById("status-filter");
-filter_status_of_reimbursement.addEventListener(
-  "click",
-  filter_reimbursement_status
-);
+selectElement.addEventListener("change", filter_reimbursement_status);
 
 async function filter_reimbursement_status() {
   let res = await fetch(
