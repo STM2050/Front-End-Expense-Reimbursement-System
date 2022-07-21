@@ -191,24 +191,6 @@ var text = ""; // declared globally in order to use it in the function filter_re
 selectElement.addEventListener("change", (e) => {
   text = e.target.value;
   console.log(text);
-  // let reimbursement_table = document.querySelector("#table_reimbursement");
-  // let num_of_column_of_laterTable = reimbursement_table.rows[0].cells.length;
-  // if (text == "pending" && role == "finance_manager") {
-  //   // create action column if the status is selected as pending and the user's role is finance_manager
-  //   if (num_of_column_of_laterTable == 10) {
-  //     let table_head_row = document.querySelector("#table-head-row");
-  //     let action_column = document.createElement("th");
-  //     action_column.setAttribute("id", "action_column");
-  //     action_column.textContent = "Action";
-  //     table_head_row.appendChild(action_column);
-  //   }
-  // } else {
-  //   // delete action column if status is selected as denied or approved
-  //   if (num_of_column_of_laterTable > 10) {
-  //     let action_column = document.querySelector("#action_column");
-  //     action_column.remove();
-  //   }
-  // }
 });
 
 selectElement.addEventListener("change", filter_reimbursement_status);
@@ -233,4 +215,8 @@ function setAttributes(element, attributes) {
   Object.keys(attributes).forEach((attr) => {
     element.setAttribute(attr, attributes[attr]);
   });
+}
+
+function helper_create_table() {
+  pass;
 }
