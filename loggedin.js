@@ -46,12 +46,15 @@ window.addEventListener("load", () => {
     let employee_create_reimbursement = document.querySelector(
       "#employee_create_reimbursement a"
     );
-    employee_create_reimbursement.setAttribute("href", "");
+    // employee_create_reimbursement.setAttribute("href", "");
     employee_create_reimbursement.setAttribute(
       "class",
       "button is-danger is-outlined"
     );
-    employee_create_reimbursement.innerHTML = "Create Reimbursement";
+    employee_create_reimbursement.innerHTML = "Create Reimbursement"; // edit from here
+    employee_create_reimbursement.addEventListener("click", () =>
+      console.log("Create Reimbursement")
+    );
   }
 });
 
@@ -103,18 +106,20 @@ function create_table(data_array) {
       approve_btn.setAttribute("name", user["reimb_id"]);
       approve_btn.setAttribute("value", "approved");
       approve_btn.setAttribute("id", "status-approve");
+      approve_btn.setAttribute("class", "button is-success is-focused");
       approve_btn.textContent = "Approve";
       let deny_btn = document.createElement("button");
       deny_btn.setAttribute("type", "button");
       deny_btn.setAttribute("name", user["reimb_id"]);
       deny_btn.setAttribute("value", "denied");
+      deny_btn.setAttribute("class", "button is-danger is-active");
       deny_btn.textContent = "Deny";
       if (status.innerHTML == "pending" && role == "finance_manager") {
         approve_deny.appendChild(approve_btn);
         approve_deny.appendChild(deny_btn);
         tableRow.appendChild(approve_deny);
-        // let approveBtn = document.querySelector("#status-approve");
         if (role == "finance_manager") {
+          // approve button event listener
           approve_btn.addEventListener("click", async () => {
             console.log(approve_btn.name);
             let reimb_id = approve_btn.name;
@@ -187,18 +192,20 @@ function create_table(data_array) {
         approve_btn.setAttribute("name", user["reimb_id"]);
         approve_btn.setAttribute("value", "approved");
         approve_btn.setAttribute("id", "status-approve");
+        approve_btn.setAttribute("class", "button is-success is-focused");
         approve_btn.textContent = "Approve";
         let deny_btn = document.createElement("button");
         deny_btn.setAttribute("type", "button");
         deny_btn.setAttribute("name", user["reimb_id"]);
         deny_btn.setAttribute("value", "denied");
+        deny_btn.setAttribute("class", "button is-danger is-active");
         deny_btn.textContent = "Deny";
         if (status.innerHTML == "pending" && role == "finance_manager") {
           approve_deny.appendChild(approve_btn);
           approve_deny.appendChild(deny_btn);
           tableRow.appendChild(approve_deny);
-          // let approveBtn = document.querySelector("#status-approve");
           if (role == "finance_manager") {
+            // approve button event listener
             approve_btn.addEventListener("click", async () => {
               console.log(approve_btn.name);
               let reimb_id = approve_btn.name;
@@ -259,5 +266,3 @@ function setAttributes(element, attributes) {
     element.setAttribute(attr, attributes[attr]);
   });
 }
-
-//Implementing approve and deny button
