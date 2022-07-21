@@ -62,57 +62,47 @@ function create_table(data_array) {
   if (!tableBody.hasChildNodes()) {
     for (let user of data_array) {
       let tableRow = document.createElement("tr");
-      tableRow.setAttribute("id", "reimb_row");
-
+      tableRow.setAttribute("id", user["reimb_id"]); // old id was "reimb_row"
       tableBody.appendChild(tableRow);
-
       let description = document.createElement("td");
       description.innerHTML = user["description"];
       tableRow.appendChild(description);
-
       let receipt_img = document.createElement("td");
       let img = document.createElement("img");
       img.setAttribute("src", user["receipt_img"]);
       receipt_img.appendChild(img);
       tableRow.appendChild(receipt_img);
-
       let reimb_author = document.createElement("td");
       reimb_author.innerHTML = user["reimb_author"];
       tableRow.appendChild(reimb_author);
-
       let reimb_id = document.createElement("td");
       reimb_id.innerHTML = user["reimb_id"];
       tableRow.appendChild(reimb_id);
-
       let reimb_resolver = document.createElement("td");
       reimb_resolver.innerHTML = user["reimb_resolver"];
       tableRow.appendChild(reimb_resolver);
-
       let reimbursement_amount = document.createElement("td");
       reimbursement_amount.innerHTML = user["reimbursement_amount"];
       tableRow.appendChild(reimbursement_amount);
-
       let resolved_at = document.createElement("td");
       resolved_at.innerHTML = user["resolved_at"];
       tableRow.appendChild(resolved_at);
-
       let status = document.createElement("td");
       status.innerHTML = user["status"];
       tableRow.appendChild(status);
-
       let submitted_at = document.createElement("td");
       submitted_at.innerHTML = user["submitted_at"];
       tableRow.appendChild(submitted_at);
-
       let type_of_expense = document.createElement("td");
       type_of_expense.innerHTML = user["type_of_expense"];
-      tableRow.appendChild(type_of_expense); //.********************************************
+      tableRow.appendChild(type_of_expense);
 
       let approve_deny = document.createElement("td");
       let approve_btn = document.createElement("button");
       approve_btn.setAttribute("type", "button");
       approve_btn.setAttribute("name", user["reimb_id"]);
       approve_btn.setAttribute("value", "approved");
+      approve_btn.setAttribute("id", "status-approve");
       approve_btn.textContent = "Approve";
       let deny_btn = document.createElement("button");
       deny_btn.setAttribute("type", "button");
@@ -123,6 +113,32 @@ function create_table(data_array) {
         approve_deny.appendChild(approve_btn);
         approve_deny.appendChild(deny_btn);
         tableRow.appendChild(approve_deny);
+        // let approveBtn = document.querySelector("#status-approve");
+        if (role == "finance_manager") {
+          approve_btn.addEventListener("click", async () => {
+            console.log(approve_btn.name);
+            let reimb_id = approve_btn.name;
+            let status = approve_btn.value;
+            let reimb_author = user["reimb_author"];
+            console.log(reimb_author);
+            let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
+              credentials: "include",
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                reimb_id: reimb_id,
+                reimb_author: reimb_author,
+                status: status,
+              }),
+            });
+            if (res.status == 200) {
+              console.log("success");
+              document.getElementById(reimb_id).style.display = "none"; // hide an element, set the style display property to “none”
+            }
+          }); //############
+        } //********* */
       }
     }
   } else {
@@ -130,7 +146,7 @@ function create_table(data_array) {
       tableBody.innerHTML = "";
       for (let user of data_array) {
         let tableRow = document.createElement("tr");
-        tableRow.setAttribute("id", "reimb_row");
+        tableRow.setAttribute("id", user["reimb_id"]); // old id was "reimb_row"
         tableBody.appendChild(tableRow);
         let description = document.createElement("td");
         description.innerHTML = user["description"];
@@ -170,6 +186,7 @@ function create_table(data_array) {
         approve_btn.setAttribute("type", "button");
         approve_btn.setAttribute("name", user["reimb_id"]);
         approve_btn.setAttribute("value", "approved");
+        approve_btn.setAttribute("id", "status-approve");
         approve_btn.textContent = "Approve";
         let deny_btn = document.createElement("button");
         deny_btn.setAttribute("type", "button");
@@ -180,6 +197,32 @@ function create_table(data_array) {
           approve_deny.appendChild(approve_btn);
           approve_deny.appendChild(deny_btn);
           tableRow.appendChild(approve_deny);
+          // let approveBtn = document.querySelector("#status-approve");
+          if (role == "finance_manager") {
+            approve_btn.addEventListener("click", async () => {
+              console.log(approve_btn.name);
+              let reimb_id = approve_btn.name;
+              let status = approve_btn.value;
+              let reimb_author = user["reimb_author"];
+              console.log(reimb_author);
+              let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
+                credentials: "include",
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  reimb_id: reimb_id,
+                  reimb_author: reimb_author,
+                  status: status,
+                }),
+              });
+              if (res.status == 200) {
+                console.log("success");
+                document.getElementById(reimb_id).style.display = "none"; // hide an element, set the style display property to “none”
+              }
+            }); //############
+          } //********* */
         }
       }
     }
@@ -217,6 +260,4 @@ function setAttributes(element, attributes) {
   });
 }
 
-function helper_create_table() {
-  pass;
-}
+//Implementing approve and deny button
