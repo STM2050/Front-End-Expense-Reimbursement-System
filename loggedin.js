@@ -54,7 +54,7 @@ window.addEventListener("load", () => {
     employee_create_reimbursement.addEventListener("click", () => {
       console.log("Create Reimbursement");
       let table_display = document.querySelector("#table_reimbursement");
-      table_display.style.display = "none";
+      table_display.style.display = "none"; // hide the table while creating a new reimbursement
       let reimb_form = document.querySelector("#reimbursement_form");
       reimb_form.reset();
       console.log(reimb_form.hidden);
@@ -65,12 +65,13 @@ window.addEventListener("load", () => {
 });
 
 function create_table(data_array) {
+  let table_head = document.querySelector("#table_head");
+  table_head.removeAttribute("hidden");
   let tableBody = document.querySelector("#t-body");
-
   // check if the tbody already has any child elements. If any child elements found, don't create a new table
   if (!tableBody.hasChildNodes()) {
     let table_display = document.querySelector("#table_reimbursement");
-    table_display.style.display = ""; //it resets the element's display property to the default by blanking out the inline "display: none"
+    table_display.style.display = ""; //it resets the element's display property to the default by blanking out the inline "display: none" which was set while creating a new reimbursement form
     let reimb_form = document.querySelector("#reimbursement_form");
     if (!reimb_form.hidden) {
       reimb_form.setAttribute("hidden", true);
@@ -163,7 +164,7 @@ function create_table(data_array) {
       tableBody.innerHTML = "";
       let table_display = document.querySelector("#table_reimbursement");
 
-      table_display.style.display = ""; //it resets the element's display property to the default by blanking out the inline "display: none"
+      table_display.style.display = ""; //it resets the element's display property to the default by blanking out the inline "display: none" which was set while creating a new reimbursement form
       let reimb_form = document.querySelector("#reimbursement_form");
       if (!reimb_form.hidden) {
         reimb_form.setAttribute("hidden", true);
