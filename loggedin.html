@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE >
 <html lang="en" class="has-background-primary-light">
   <head>
     <meta charset="UTF-8" />
@@ -90,7 +90,7 @@
           >
           <span>
             <label for="reimbursementAmt">Reimbursement Amount</label>
-            <input type="text" id="reimbursementAmt" /> </span
+            <input type="number" id="reimbursementAmt" required /> </span
           ><br />
           <br />
           <span>
@@ -99,11 +99,12 @@
               id="description"
               placeholder="Purpose of Expense"
               maxlength="50"
+              required
             ></textarea>
           </span>
           <span>
             <label for="receiptImg">Upload Receipt</label>
-            <input type="file" id="receiptImg" /> </span
+            <input type="file" id="receiptImg" required /> </span
           ><br /><br />
           <button type="button" id="expenseCreateBtn">Submit</button>
         </form>
