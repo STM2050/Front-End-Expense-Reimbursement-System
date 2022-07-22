@@ -94,6 +94,15 @@ window.addEventListener("load", () => {
         });
         if (res.status == 201) {
           console.log("New Reimbursement created");
+          reimb_form.reset();
+          // let message = document.querySelector("#message");
+          // let message_display = document.createElement("p");
+          // message_display.setAttribute(
+          //   "class",
+          //   "has-text-info has-background-success"
+          // );
+          // message_display.innerHTML = "Reimbursement successfully submitted";
+          // message.appendChild(message_display);
         }
       });
     });
@@ -101,6 +110,9 @@ window.addEventListener("load", () => {
 });
 
 function create_table(data_array) {
+  // This message variable is from create reimbursement
+  // let message = document.querySelector("#message");
+  // message.style.display = "none";
   let table_head = document.querySelector("#table_head");
   table_head.removeAttribute("hidden");
   let tableBody = document.querySelector("#t-body");
