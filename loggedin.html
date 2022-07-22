@@ -76,6 +76,38 @@
           <tbody id="t-body"></tbody>
         </table>
       </div>
+
+      <div>
+        <form id="reimbursement_form" hidden>
+          <span
+            ><label id="typeOfExpense">Type of Expense</label>
+            <select>
+              <option>Lodging</option>
+              <option>Travel</option>
+              <option>Food</option>
+              <option>Other</option>
+            </select></span
+          >
+          <span>
+            <label for="reimbursementAmt">Reimbursement Amount</label>
+            <input type="text" id="reimbursementAmt" /> </span
+          ><br />
+          <br />
+          <span>
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              placeholder="Purpose of Expense"
+              maxlength="50"
+            ></textarea>
+          </span>
+          <span>
+            <label for="receiptImg">Upload Receipt</label>
+            <input type="file" id="receiptImg" /> </span
+          ><br /><br />
+          <button type="button" id="expenseCreateBtn">Submit</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>

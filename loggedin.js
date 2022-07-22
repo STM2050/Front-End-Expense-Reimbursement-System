@@ -46,7 +46,6 @@ window.addEventListener("load", () => {
     let employee_create_reimbursement = document.querySelector(
       "#employee_create_reimbursement a"
     );
-    // employee_create_reimbursement.setAttribute("href", "");
     employee_create_reimbursement.setAttribute(
       "class",
       "button is-danger is-outlined"
@@ -55,7 +54,12 @@ window.addEventListener("load", () => {
     employee_create_reimbursement.addEventListener("click", () => {
       console.log("Create Reimbursement");
       let table_display = document.querySelector("#table_reimbursement");
-      table_display.style.visibility = "hidden";
+      table_display.style.display = "none";
+      let reimb_form = document.querySelector("#reimbursement_form");
+      reimb_form.reset();
+      console.log(reimb_form.hidden);
+      reimb_form.removeAttribute("hidden");
+      console.log(reimb_form.hidden);
     });
   }
 });
@@ -66,8 +70,10 @@ function create_table(data_array) {
   // check if the tbody already has any child elements. If any child elements found, don't create a new table
   if (!tableBody.hasChildNodes()) {
     let table_display = document.querySelector("#table_reimbursement");
-    if (table_display.style.visibility === "hidden") {
-      table_display.style.visibility = "visible";
+    table_display.style.display = ""; //it resets the element's display property to the default by blanking out the inline "display: none"
+    let reimb_form = document.querySelector("#reimbursement_form");
+    if (!reimb_form.hidden) {
+      reimb_form.setAttribute("hidden", true);
     }
     for (let user of data_array) {
       let tableRow = document.createElement("tr");
@@ -156,9 +162,13 @@ function create_table(data_array) {
     {
       tableBody.innerHTML = "";
       let table_display = document.querySelector("#table_reimbursement");
-      if (table_display.style.visibility === "hidden") {
-        table_display.style.visibility = "visible";
+
+      table_display.style.display = ""; //it resets the element's display property to the default by blanking out the inline "display: none"
+      let reimb_form = document.querySelector("#reimbursement_form");
+      if (!reimb_form.hidden) {
+        reimb_form.setAttribute("hidden", true);
       }
+
       for (let user of data_array) {
         let tableRow = document.createElement("tr");
         tableRow.setAttribute("id", user["reimb_id"]); // old id was "reimb_row"
