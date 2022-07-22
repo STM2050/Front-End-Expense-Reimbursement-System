@@ -60,6 +60,42 @@ window.addEventListener("load", () => {
       console.log(reimb_form.hidden);
       reimb_form.removeAttribute("hidden");
       console.log(reimb_form.hidden);
+      // handling form elements
+      let typeOfExpense = document.querySelector("#typeOfExpense");
+      let type_of_expense = "";
+      typeOfExpense.addEventListener("change", (e) => {
+        type_of_expense = e.target.value;
+      });
+
+      let submit_btn = document.querySelector("#expenseCreateBtn");
+      submit_btn.addEventListener("click", async () => {
+        let reimbursement_amount = parseInt(
+          document.querySelector("#reimbursementAmt").value
+        );
+        console.log(typeof reimbursement_amount);
+
+        let description = document.querySelector("#description").value;
+        console.log(type_of_expense);
+        console.log(description);
+
+        // const imageFile = document.querySelector("receiptImg");
+        // console.log(imageFile);
+        let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            reimbursement_amount: reimbursement_amount,
+            type_of_expense: type_of_expense,
+            description: description,
+          }),
+        });
+        if (res.status == 201) {
+          console.log("New Reimbursement created");
+        }
+      });
     });
   }
 });
@@ -335,3 +371,5 @@ function setAttributes(element, attributes) {
     element.setAttribute(attr, attributes[attr]);
   });
 }
+
+// Handling new reimbursement form element

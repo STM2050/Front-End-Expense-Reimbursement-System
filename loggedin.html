@@ -80,12 +80,13 @@
       <div>
         <form id="reimbursement_form" hidden>
           <span
-            ><label id="typeOfExpense">Type of Expense</label>
-            <select>
-              <option>Lodging</option>
-              <option>Travel</option>
-              <option>Food</option>
-              <option>Other</option>
+            ><label for="typeOfExpense">Type of Expense</label>
+            <select id="typeOfExpense">
+              <option value="">Select one</option>
+              <option value="Lodging">Lodging</option>
+              <option value="Travel">Travel</option>
+              <option value="Food">Food</option>
+              <option value="Other">Other</option>
             </select></span
           >
           <span>
@@ -104,7 +105,7 @@
           </span>
           <span>
             <label for="receiptImg">Upload Receipt</label>
-            <input type="file" id="receiptImg" required /> </span
+            <input type="file" id="receiptImg" /> </span
           ><br /><br />
           <button type="button" id="expenseCreateBtn">Submit</button>
         </form>
