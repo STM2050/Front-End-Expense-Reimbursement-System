@@ -156,6 +156,30 @@ function create_table(data_array) {
               document.getElementById(reimb_id).style.display = "none"; // hide an element, set the style display property to “none”
             }
           }); //############
+          // deny button event listener
+          deny_btn.addEventListener("click", async () => {
+            console.log(deny_btn.name);
+            let reimb_id = deny_btn.name;
+            let status = deny_btn.value;
+            let reimb_author = user["reimb_author"];
+            console.log(reimb_author);
+            let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
+              credentials: "include",
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                reimb_id: reimb_id,
+                reimb_author: reimb_author,
+                status: status,
+              }),
+            });
+            if (res.status == 200) {
+              console.log("success");
+              document.getElementById(reimb_id).style.display = "none"; // hide an element, set the style display property to “none”
+            }
+          });
         } //********* */
       }
     }
@@ -250,6 +274,30 @@ function create_table(data_array) {
                 document.getElementById(reimb_id).style.display = "none"; // hide an element, set the style display property to “none”
               }
             }); //############
+            // deny button event listener
+            deny_btn.addEventListener("click", async () => {
+              console.log(deny_btn.name);
+              let reimb_id = deny_btn.name;
+              let status = deny_btn.value;
+              let reimb_author = user["reimb_author"];
+              console.log(reimb_author);
+              let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
+                credentials: "include",
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  reimb_id: reimb_id,
+                  reimb_author: reimb_author,
+                  status: status,
+                }),
+              });
+              if (res.status == 200) {
+                console.log("success");
+                document.getElementById(reimb_id).style.display = "none"; // hide an element, set the style display property to “none”
+              }
+            });
           } //********* */
         }
       }
