@@ -50,7 +50,7 @@ window.addEventListener("load", () => {
       "class",
       "button is-danger is-outlined"
     );
-    employee_create_reimbursement.innerHTML = "Create Reimbursement"; // edit from here
+    employee_create_reimbursement.innerHTML = "Create Reimbursement"; // edit from here for reimbursement form
     employee_create_reimbursement.addEventListener("click", () => {
       console.log("Create Reimbursement");
       let table_display = document.querySelector("#table_reimbursement");
