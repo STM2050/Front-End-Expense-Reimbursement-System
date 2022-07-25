@@ -78,8 +78,6 @@ window.addEventListener("load", () => {
         console.log(type_of_expense);
         console.log(description);
 
-        // const imageFile = document.querySelector("receiptImg");
-        // console.log(imageFile);
         let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
           credentials: "include",
           method: "POST",
@@ -95,14 +93,11 @@ window.addEventListener("load", () => {
         if (res.status == 201) {
           console.log("New Reimbursement created");
           reimb_form.reset();
-          // let message = document.querySelector("#message");
-          // let message_display = document.createElement("p");
-          // message_display.setAttribute(
-          //   "class",
-          //   "has-text-info has-background-success"
-          // );
-          // message_display.innerHTML = "Reimbursement successfully submitted";
-          // message.appendChild(message_display);
+          let reimb_success = document.querySelector("#reimb_success");
+          reimb_success.removeAttribute("hidden");
+          if (!reimb_form.hidden) {
+            reimb_form.setAttribute("hidden", true);
+          }
         }
       });
     });
@@ -110,9 +105,6 @@ window.addEventListener("load", () => {
 });
 
 function create_table(data_array) {
-  // This message variable is from create reimbursement
-  // let message = document.querySelector("#message");
-  // message.style.display = "none";
   let table_head = document.querySelector("#table_head");
   table_head.removeAttribute("hidden");
   let tableBody = document.querySelector("#t-body");
@@ -123,6 +115,10 @@ function create_table(data_array) {
     let reimb_form = document.querySelector("#reimbursement_form");
     if (!reimb_form.hidden) {
       reimb_form.setAttribute("hidden", true);
+    }
+    let reimb_success = document.querySelector("#reimb_success");
+    if (!reimb_success.hidden) {
+      reimb_success.setAttribute("hidden", true);
     }
     for (let user of data_array) {
       let tableRow = document.createElement("tr");
@@ -240,6 +236,10 @@ function create_table(data_array) {
       let reimb_form = document.querySelector("#reimbursement_form");
       if (!reimb_form.hidden) {
         reimb_form.setAttribute("hidden", true);
+      }
+      let reimb_success = document.querySelector("#reimb_success");
+      if (!reimb_success.hidden) {
+        reimb_success.setAttribute("hidden", true);
       }
 
       for (let user of data_array) {
