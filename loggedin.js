@@ -15,7 +15,8 @@ async function logout() {
   }
 }
 
-async function get_all_reimbursement() {
+async function get_all_reimbursement(e) {
+  e.preventDefault();
   let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
     credentials: "include",
     method: "GET",
@@ -51,7 +52,8 @@ window.addEventListener("load", () => {
       "button is-danger is-outlined"
     );
     employee_create_reimbursement.innerHTML = "Create Reimbursement"; // edit from here for reimbursement form
-    employee_create_reimbursement.addEventListener("click", () => {
+    employee_create_reimbursement.addEventListener("click", (e) => {
+      e.preventDefault();
       console.log("Create Reimbursement");
       let table_display = document.querySelector("#table_reimbursement");
       table_display.style.display = "none"; // hide the table while creating a new reimbursement
@@ -60,42 +62,10 @@ window.addEventListener("load", () => {
       console.log(reimb_form.hidden);
       reimb_form.removeAttribute("hidden");
       console.log(reimb_form.hidden);
-      // handling form elements
-      let typeOfExpense = document.querySelector("#typeOfExpense");
-      let type_of_expense = "";
-      typeOfExpense.addEventListener("change", (e) => {
-        type_of_expense = e.target.value;
-      });
-
-      let submit_btn = document.querySelector("#expenseCreateBtn");
-      submit_btn.addEventListener("click", async () => {
-        let reimbursement_amount = parseInt(
-          document.querySelector("#reimbursementAmt").value
-        );
-        console.log(typeof reimbursement_amount);
-
-        let description = document.querySelector("#description").value;
-        console.log(type_of_expense);
-        console.log(description);
-
-        // const imageFile = document.querySelector("receiptImg");
-        // console.log(imageFile);
-        let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
-          credentials: "include",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            reimbursement_amount: reimbursement_amount,
-            type_of_expense: type_of_expense,
-            description: description,
-          }),
-        });
-        if (res.status == 201) {
-          console.log("New Reimbursement created");
-        }
-      });
+      let reimb_success = document.querySelector("#reimb_success");
+      if (!reimb_success.hidden) {
+        reimb_success.setAttribute("hidden", true);
+      }
     });
   }
 });
@@ -111,6 +81,10 @@ function create_table(data_array) {
     let reimb_form = document.querySelector("#reimbursement_form");
     if (!reimb_form.hidden) {
       reimb_form.setAttribute("hidden", true);
+    }
+    let reimb_success = document.querySelector("#reimb_success");
+    if (!reimb_success.hidden) {
+      reimb_success.setAttribute("hidden", true);
     }
     for (let user of data_array) {
       let tableRow = document.createElement("tr");
@@ -229,6 +203,10 @@ function create_table(data_array) {
       if (!reimb_form.hidden) {
         reimb_form.setAttribute("hidden", true);
       }
+      let reimb_success = document.querySelector("#reimb_success");
+      if (!reimb_success.hidden) {
+        reimb_success.setAttribute("hidden", true);
+      }
 
       for (let user of data_array) {
         let tableRow = document.createElement("tr");
@@ -344,6 +322,7 @@ let selectElement = document.querySelector("#status");
 
 var text = ""; // declared globally in order to use it in the function filter_reimbursement_status
 selectElement.addEventListener("change", (e) => {
+  e.preventDefault();
   text = e.target.value;
   console.log(text);
 });
@@ -372,4 +351,48 @@ function setAttributes(element, attributes) {
   });
 }
 
-// Handling new reimbursement form element
+let submit_btn = document.querySelector("#expenseCreateBtn");
+
+submit_btn.addEventListener("click", create_reimbursement);
+
+let typeOfExpense = document.querySelector("#typeOfExpense");
+let type_of_expense = "Kapala";
+typeOfExpense.addEventListener("change", (e) => {
+  e.preventDefault();
+  type_of_expense = e.target.value;
+  console.log(type_of_expense);
+});
+
+//function to create reimbursement************************************************************
+async function create_reimbursement(e) {
+  e.preventDefault();
+
+  let reimbursement_amount = parseInt(
+    document.querySelector("#reimbursementAmt").value
+  );
+
+  let description = document.querySelector("#description").value;
+
+  let res = await fetch(`http://127.0.0.1:8080/users/${username}`, {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      reimbursement_amount: reimbursement_amount,
+      type_of_expense: type_of_expense,
+      description: description,
+    }),
+  });
+  if (res.status == 201) {
+    console.log("New Reimbursement created");
+    let reimb_form = document.querySelector("#reimbursement_form");
+    // reimb_form.reset();
+    let reimb_success = document.querySelector("#reimb_success");
+    reimb_success.removeAttribute("hidden");
+    if (!reimb_form.hidden) {
+      reimb_form.setAttribute("hidden", true);
+    }
+  }
+}

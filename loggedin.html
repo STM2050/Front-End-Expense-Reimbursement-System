@@ -23,9 +23,7 @@
               Check Reimbursement Details
             </button>
           </span>
-          <span id="employee_all_reimbursement">
-            <a></a>
-          </span>
+
           <span id="employee_create_reimbursement">
             <a></a>
           </span>
@@ -91,7 +89,12 @@
           >
           <span>
             <label for="reimbursementAmt">Reimbursement Amount</label>
-            <input type="number" id="reimbursementAmt" required /> </span
+            <input
+              type="number"
+              id="reimbursementAmt"
+              min="0"
+              required
+            /> </span
           ><br />
           <br />
           <span>
@@ -109,6 +112,16 @@
           ><br /><br />
           <button type="button" id="expenseCreateBtn">Submit</button>
         </form>
+        <div id="message"></div>
+      </div>
+      <div>
+        <p id="reimb_success" hidden>
+          Reimbursement request successfully submitted !!!
+        </p>
+        <p id="reimb_fail" hidden>
+          Reimbursement request cannot be submitted. Please fill all the details
+          properly and submit. Image receipt is not mandatory!!!
+        </p>
       </div>
     </main>
   </body>
